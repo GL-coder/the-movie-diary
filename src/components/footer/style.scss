@@ -1,0 +1,23 @@
+$secondary-color: #ff7c00;
+
+footer {
+    margin-top: 30px;
+    height: 50px;
+    background-color: rgba(50, 50, 50, 0.26);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 3px;
+    text-align: center;
+
+    a {
+        color: inherit;
+        transition: .25s linear;
+
+        &:hover,
+        &:focus {
+            color: $secondary-color;
+            text-decoration: underline;
+        }
+    }
+}

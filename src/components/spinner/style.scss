@@ -1,0 +1,21 @@
+$main-color: #092f2d;
+
+.spinner {
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
+    border: 3px dotted transparent;
+    border-top: 5px ridge $main-color;
+    animation: rotateSpinnerAnimation 1.5s linear infinite;
+}
+
+@keyframes rotateSpinnerAnimation {
+    from {
+        transform: rotate(0deg);
+        border-bottom-color: $main-color;
+    }to {
+        transform: rotate(360deg);
+        border-bottom-color: transparent;
+    }
+}

@@ -1,0 +1,33 @@
+$secondary-color: #ff7c00;
+
+.movie-items {
+    margin-top: 25px;
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+
+        .movie-items__message {
+            line-height: 26px;
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+
+            p:not(:last-child) {
+                margin-bottom: 12px;
+            }
+
+            span {
+                color: $secondary-color;
+            }
+
+            @media screen and (max-width:820px){
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 820px) {
+            justify-content: center;
+        }
+    }
+}
