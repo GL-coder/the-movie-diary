@@ -45,7 +45,9 @@ const SearchPanel = ({ selectedMovie }) => {
   );
 
   const contentItem =
-    selectedMovie.linkTo !== null && !isLoading ? (
+    titleInputRef?.current?.value &&
+    selectedMovie.linkTo !== null &&
+    !isLoading ? (
       <MovieItem movieData={selectedMovie} />
     ) : (
       statusContent
@@ -56,24 +58,28 @@ const SearchPanel = ({ selectedMovie }) => {
   };
 
   const searchBtnHandler = () => {
-    const title = titleInputRef.current.value;
-    const year = yearInputRef.current.value;
+    if (!isLoading) {
+      const title = titleInputRef.current.value;
+      const year = yearInputRef.current.value;
 
-    if (title.toLowerCase() !== prevSearchTitle || year !== prevSearchYear) {
-      setIsLoading(true);
+      if (title.toLowerCase() !== prevSearchTitle || year !== prevSearchYear) {
+        setIsLoading(true);
 
-      setPrevSearchTitle(title.toLowerCase());
-      setPrevSearchYear(year);
+        setPrevSearchTitle(title.toLowerCase());
+        setPrevSearchYear(year);
 
-      const movieAPI = new MovieAPI();
+        const movieAPI = new MovieAPI();
 
-      const url = title.replace(/\s/g, "+");
+        const url = title.replace(/\s/g, "+");
 
-      movieAPI.getResource(url, year).then((fullMovieData) => {
-        dispatch(onSearchMovie(fullMovieData, title));
+        movieAPI.getResource(url, year).then((fullMovieData) => {
+          dispatch(onSearchMovie(fullMovieData, title));
 
-        setTimeout(() => {setIsLoading(false)}, 750);
-      });
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 750);
+        });
+      }
     }
   };
 
@@ -83,18 +89,24 @@ const SearchPanel = ({ selectedMovie }) => {
         <div className="content">
           <div className="search-panel__items">
             <input
+              disabled={isLoading}
               type="text"
               placeholder="Movie title"
               ref={titleInputRef}
               onKeyUp={inputHandler}
             />
             <input
+              disabled={isLoading}
               type="text"
               placeholder="year (optional*)"
               ref={yearInputRef}
               onKeyUp={inputHandler}
             />
-            <button ref={searchBtnRef} onClick={searchBtnHandler}>
+            <button
+              ref={searchBtnRef}
+              onClick={searchBtnHandler}
+              disabled={isLoading}
+            >
               Search
             </button>
           </div>

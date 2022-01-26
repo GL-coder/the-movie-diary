@@ -56,6 +56,10 @@ $secondary-color: #ff7c00;
             &:focus {
                 box-shadow: 0 0 10px white;
             }
+
+            &:disabled {
+                cursor: progress;
+            }
         }
 
         & > button {
