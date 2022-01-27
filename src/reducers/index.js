@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
     case "ON_SWITCH":
       return {
         ...state,
-        ...onSwitch(state, action),
+        ...onSwitch(action),
       };
 
     case "ON_SEARCH_MOVIE":
