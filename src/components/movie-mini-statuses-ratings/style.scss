@@ -25,6 +25,10 @@ $active-color: #125c1b;
         border: none;
         color: white;
 
+        &.active {
+            border: 1px solid white;
+        }
+
         &:not(:last-child) {
             margin-right: 4px;
         }
