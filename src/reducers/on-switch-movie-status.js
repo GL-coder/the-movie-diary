@@ -1,10 +1,10 @@
 import updateMovieData from "./update-movie";
 
 const onSwitchMovieStatus = (
-  { moviesData, selectedMovie, selectedMovie: { statuses } },
+  { moviesData, selectedMovie },
   { keyValue, status }
 ) => {
-  const updatedStatuses = { ...statuses, [keyValue]: status };
+  const updatedStatuses = { ...selectedMovie?.statuses, [keyValue]: status };
   const updatedMovie = {
     ...selectedMovie,
     statuses: updatedStatuses,
@@ -23,7 +23,7 @@ const onSwitchMovieStatus = (
     return {
       moviesData: updateMovieData(moviesData, null, movieIndex),
       page: "",
-      selectedMovie: { linkTo: null },
+      selectedMovie: null,
     };
   }
 };

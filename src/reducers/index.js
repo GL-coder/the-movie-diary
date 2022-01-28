@@ -17,7 +17,7 @@ const initialState = {
 
   moviesData: checkLocalStorage("moviesData") || [],
 
-  selectedMovie: checkLocalStorage("selectedMovie") || { linkTo: null },
+  selectedMovie: checkLocalStorage("selectedMovie") || null,
 };
 
 const reducer = (state = initialState, action) => {

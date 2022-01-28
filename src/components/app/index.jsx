@@ -31,7 +31,7 @@ const App = () => {
       {!hasPageLoaded ? (
         <Navigate
           to={
-            selectedMovie.linkTo !== null && page === "details"
+            selectedMovie !== null && page === "details"
               ? `/details/${selectedMovie.linkTo}`
               : `/${page}`
           }
@@ -49,7 +49,7 @@ const App = () => {
             />
 
             <Route
-              path={`/details/${selectedMovie.linkTo}`}
+              path={`/details/${selectedMovie?.linkTo}`}
               element={<MovieDetails selectedMovie={selectedMovie} />}
             />
 

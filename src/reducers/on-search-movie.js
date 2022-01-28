@@ -40,11 +40,11 @@ const onSearchMovie = ({ moviesData }, { fullMovieData, title }) => {
           next: 1,
         },
         statuses: {
-            favorite: false,
-            watched: false,
-            next: false,
-            delete: true
-        }
+          favorite: false,
+          watched: false,
+          next: false,
+          delete: true,
+        },
       };
 
       return { selectedMovie: newMovie };
@@ -53,7 +53,7 @@ const onSearchMovie = ({ moviesData }, { fullMovieData, title }) => {
     }
   } else {
     return {
-      selectedMovie: { linkTo: null },
+      selectedMovie: null,
     };
   }
 };

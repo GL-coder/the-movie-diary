@@ -13,7 +13,7 @@ const onChangeMovieRating = (
   }
 
   const updatedRatings = {
-    ...selectedMovie.ratings,
+    ...selectedMovie?.ratings,
     [keyValue]: value,
   };
 

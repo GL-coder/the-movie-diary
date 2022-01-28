@@ -32,7 +32,7 @@ const SearchPanel = ({ selectedMovie }) => {
       yearInputRef.current.value.length !== 4
     ) {
       searchMessageStatusRef.current = "You have entered an invalid year...";
-    } else if (selectedMovie.linkTo === null) {
+    } else if (selectedMovie === null) {
       searchMessageStatusRef.current =
         "You have entered the wrong movie title or year or just the movie is not in the API...";
     }
@@ -46,7 +46,7 @@ const SearchPanel = ({ selectedMovie }) => {
 
   const contentItem =
     titleInputRef?.current?.value &&
-    selectedMovie.linkTo !== null &&
+    selectedMovie !== null &&
     !isLoading ? (
       <MovieItem movieData={selectedMovie} />
     ) : (
