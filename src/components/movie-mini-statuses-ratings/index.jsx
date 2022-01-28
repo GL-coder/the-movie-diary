@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.scss";
 
-const MovieMiniStatusRating = ({ statuses, ratings }) => {
+const MovieMiniStatusesRatings = ({ statuses, ratings }) => {
   let items = [];
 
   for (const key in statuses) {
@@ -31,4 +31,4 @@ const MovieMiniStatusRating = ({ statuses, ratings }) => {
   return <div className="movie-items__mini-ratings">{items}</div>;
 };
 
-export default MovieMiniStatusRating;
+export default MovieMiniStatusesRatings;

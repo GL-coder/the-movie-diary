@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import MovieMiniStatusRating from "../movie-mini-status-rating";
+import MovieMiniStatusesRatings from "../movie-mini-statuses-ratings";
 
 import { onCheckDetails } from "../../actions/";
 
@@ -24,7 +24,7 @@ const MovieItem = ({
       <img src={Poster} alt={Title + " ...[error: no access to photo]"} />
 
       {page === "" ? (
-        <MovieMiniStatusRating ratings={ratings} statuses={statuses} />
+        <MovieMiniStatusesRatings ratings={ratings} statuses={statuses} />
       ) : null}
     </>
   );
