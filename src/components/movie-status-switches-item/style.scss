@@ -42,8 +42,7 @@ $secondary-color: #ff7c00;
             justify-content: center;
             top: calc(100% - 20px);
             left: 50%;
-            transform: translateX(-50%) scale(1);
-            animation: appearanceAnimation 0.35s linear 1;
+            transform: translateX(-50%);
 
             button {
                 width: 40px;
@@ -95,14 +94,5 @@ $secondary-color: #ff7c00;
                 }
             }
         }
-    }
-}
-
-@keyframes appearanceAnimation {
-    from {
-        transform: translateX(-50%) scale(0);
-    }
-    to {
-        transform: translateX(-50%) scale(1);
     }
 }

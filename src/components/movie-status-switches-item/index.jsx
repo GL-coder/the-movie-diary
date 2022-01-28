@@ -34,8 +34,8 @@ const MovieStatusSwitchesItem = ({ keyValue, text, status, rating }) => {
   const ratingMinusHandler = () => {
     dispatch(onChangeMovieRating(keyValue, rating - 1));
   };
-  const ratingInputHandler = (e) => {
-    dispatch(onChangeMovieRating(keyValue, +e.target.value));
+  const ratingInputHandler = (e, onBlurActivated = false) => {
+    dispatch(onChangeMovieRating(keyValue, +e.target.value, onBlurActivated));
   };
   const ratingPlusHandler = () => {
     dispatch(onChangeMovieRating(keyValue, rating + 1));
@@ -47,7 +47,12 @@ const MovieStatusSwitchesItem = ({ keyValue, text, status, rating }) => {
         —
       </button>
 
-      <input type="number" value={rating} onChange={ratingInputHandler} />
+      <input
+        type="number"
+        value={rating}
+        onChange={ratingInputHandler}
+        onBlur={(e) => ratingInputHandler(e, true)}
+      />
 
       <button disabled={rating >= 999} onClick={ratingPlusHandler}>
         +

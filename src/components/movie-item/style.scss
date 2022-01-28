@@ -1,6 +1,7 @@
 $main-color: #092f2d;
 
-.movie-item {
+.movie-items__item-content {
+    position: relative;
     display: flex;
     flex: 0 1 calc(20% - 20px);
     padding: 0 10px;

@@ -26,10 +26,10 @@ const onSwitchMovieStatus = (keyValue, status) => {
   };
 };
 
-const onChangeMovieRating = (keyValue, newValue) => {
+const onChangeMovieRating = (keyValue, newValue, onBlurActivated) => {
   return {
     type: "ON_CHANGE_MOVIE_RATING",
-    payload: { keyValue, newValue },
+    payload: { keyValue, newValue, onBlurActivated },
   };
 };
 
