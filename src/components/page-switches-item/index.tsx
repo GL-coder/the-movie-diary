@@ -4,19 +4,24 @@ import { Link } from "react-router-dom";
 
 import { onSwitch } from "../../actions/";
 
+import { AppStateType } from "../../types";
+
 import "./style.scss";
 
-const PageSwitchesItem = ({ text, keyValue }) => {
+type PropsType = {
+  text: string;
+  keyValue: string;
+}
+
+const PageSwitchesItem: React.FC<PropsType> = ({ text, keyValue }) => {
   const dispatch = useDispatch();
 
-  const page = useSelector(({ page }) => page);
+  const page = useSelector(({ page }: AppStateType) => page);
 
   let classNames = "page-switches__item btn";
   classNames += keyValue === page ? " active" : "";
 
-  const clickHanlder = () => {
-    dispatch(onSwitch("page", keyValue));
-  };
+  const clickHanlder = () => dispatch(onSwitch("page", keyValue));
 
   return (
     <Link to={`/${keyValue}`} className={classNames} onClick={clickHanlder}>

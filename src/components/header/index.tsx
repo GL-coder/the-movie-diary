@@ -4,7 +4,7 @@ import PageSwitches from "../page-switches/";
 
 import "./style.scss";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header>
       <div className="container">

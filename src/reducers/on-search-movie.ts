@@ -1,4 +1,12 @@
-const onSearchMovie = ({ moviesData }, { fullMovieData, title }) => {
+import { AppStateType } from "./../types/";
+import { OnSearchMovieActionType } from "./../actions/";
+
+const onSearchMovie = (
+  { moviesData }: AppStateType,
+  action: OnSearchMovieActionType
+) => {
+  const { fullMovieData, title } = action.payload;
+
   if (title.length > 0 && fullMovieData.Response === "True") {
     const checkMovieInData = moviesData.find(
       ({ Poster, Title }) =>
@@ -52,9 +60,7 @@ const onSearchMovie = ({ moviesData }, { fullMovieData, title }) => {
       return { selectedMovie: checkMovieInData };
     }
   } else {
-    return {
-      selectedMovie: null,
-    };
+    return { selectedMovie: null };
   }
 };
 

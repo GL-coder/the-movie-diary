@@ -1,12 +1,17 @@
 import updateMovieData from "./update-movie";
 
+import { AppStateType } from "./../types/";
+import { OnSwitchMovieStatusActionType } from "./../actions/";
+
 const onSwitchMovieStatus = (
-  { moviesData, selectedMovie },
-  { keyValue, status }
+  { moviesData, selectedMovie }: AppStateType,
+  action: OnSwitchMovieStatusActionType
 ) => {
-  const updatedStatuses = { ...selectedMovie?.statuses, [keyValue]: status };
+  const {keyValue, status} = action.payload;
+
+  const updatedStatuses = { ...selectedMovie!.statuses, [keyValue]: status };
   const updatedMovie = {
-    ...selectedMovie,
+    ...selectedMovie!,
     statuses: updatedStatuses,
   };
 

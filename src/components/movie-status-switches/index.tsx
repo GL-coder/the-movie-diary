@@ -2,9 +2,16 @@ import React from "react";
 
 import MovieStatusSwitchesItem from "../movie-status-switches-item/";
 
+import { RatingsType, StatusesType } from "../../types";
+
 import "./style.scss";
 
-const MovieStatusSwitches = ({ statuses, ratings }) => {
+type PropsType = {
+  statuses: StatusesType;
+  ratings: RatingsType;
+};
+
+const MovieStatusSwitches: React.FC<PropsType> = ({ statuses, ratings }) => {
   const statusesData = {
     favorite: "favorite",
     watched: "watched",
@@ -15,13 +22,17 @@ const MovieStatusSwitches = ({ statuses, ratings }) => {
   const statusesKeys = Object.keys(statusesData);
 
   const items = statusesKeys.map((keyValue) => {
+    const text = statusesData[keyValue as keyof typeof statusesData];
+    const status = statuses[keyValue as keyof typeof statuses];
+    const rating = ratings[keyValue as keyof typeof ratings];
+
     return (
       <MovieStatusSwitchesItem
         key={keyValue}
         keyValue={keyValue}
-        text={statusesData[keyValue]}
-        status={statuses[keyValue]}
-        rating={ratings[keyValue]}
+        text={text}
+        status={status}
+        rating={rating}
       />
     );
   });

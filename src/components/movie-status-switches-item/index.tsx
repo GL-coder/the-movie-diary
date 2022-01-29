@@ -6,15 +6,25 @@ import { onSwitchMovieStatus, onChangeMovieRating } from "../../actions/";
 
 import "./style.scss";
 
-const MovieStatusSwitchesItem = ({ keyValue, text, status, rating }) => {
+type PropsType = {
+  keyValue: string;
+  text: string;
+  status: boolean;
+  rating: number;
+};
+
+const MovieStatusSwitchesItem: React.FC<PropsType> = ({
+  keyValue,
+  text,
+  status,
+  rating,
+}) => {
   const dispatch = useDispatch();
 
   let btnClassNames = "movie-status-switches__item btn";
   btnClassNames += status ? " active" : "";
 
-  const btnHandler = () => {
-    dispatch(onSwitchMovieStatus(keyValue, !status));
-  };
+  const btnHandler = () => dispatch(onSwitchMovieStatus(keyValue, !status));
 
   const btnItem = (
     <button className={btnClassNames} onClick={btnHandler}>
@@ -34,7 +44,10 @@ const MovieStatusSwitchesItem = ({ keyValue, text, status, rating }) => {
   const ratingMinusHandler = () => {
     dispatch(onChangeMovieRating(keyValue, rating - 1));
   };
-  const ratingInputHandler = (e, onBlurActivated = false) => {
+  const ratingInputHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    onBlurActivated = false
+  ) => {
     dispatch(onChangeMovieRating(keyValue, +e.target.value, onBlurActivated));
   };
   const ratingPlusHandler = () => {

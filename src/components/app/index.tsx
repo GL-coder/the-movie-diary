@@ -9,10 +9,12 @@ import SearchPanel from "../search-panel/";
 import MovieDetails from "../movie-details/";
 import Footer from "../footer/";
 
+import { AppStateType } from "../../types";
+
 import "./style.scss";
 
-const App = () => {
-  const state = useSelector((state) => state);
+const App: React.FC = () => {
+  const state = useSelector((state: AppStateType) => state);
 
   const { page, movieFilter, moviesData, selectedMovie } = state;
 
@@ -50,7 +52,9 @@ const App = () => {
 
             <Route
               path={`/details/${selectedMovie?.linkTo}`}
-              element={<MovieDetails selectedMovie={selectedMovie} />}
+              element={
+                <MovieDetails selectedMovie={selectedMovie!} />
+              }
             />
 
             <Route

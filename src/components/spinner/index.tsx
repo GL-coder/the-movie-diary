@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.scss";
 
-const Spinner = () => {
+const Spinner: React.FC = () => {
   return <div className="spinner"></div>;
 };
 

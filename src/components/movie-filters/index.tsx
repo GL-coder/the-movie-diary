@@ -4,7 +4,7 @@ import MovieFiltersItem from "../movie-filters-item/";
 
 import "./style.scss";
 
-const MovieFilters = () => {
+const MovieFilters: React.FC = () => {
   const itemsData = [
     { text: "all movies", keyValue: "all" },
     { text: "favorite", keyValue: "favorite" },

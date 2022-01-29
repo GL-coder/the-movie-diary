@@ -1,9 +1,14 @@
-import updateMovieData from './update-movie';
+import updateMovieData from "./update-movie";
+
+import { AppStateType } from "./../types/";
+import { OnChangeMovieRatingActionType } from "../actions";
 
 const onChangeMovieRating = (
-  { moviesData, selectedMovie },
-  { keyValue, newValue, onBlurActivated }
+  { moviesData, selectedMovie }: AppStateType,
+  action: OnChangeMovieRatingActionType
 ) => {
+  const { keyValue, newValue, onBlurActivated } = action.payload;
+
   let value = newValue;
 
   if (value <= 0 && onBlurActivated) {
@@ -13,12 +18,12 @@ const onChangeMovieRating = (
   }
 
   const updatedRatings = {
-    ...selectedMovie?.ratings,
+    ...selectedMovie!.ratings,
     [keyValue]: value,
   };
 
   const updatedMovie = {
-    ...selectedMovie,
+    ...selectedMovie!,
     ratings: updatedRatings,
   };
 

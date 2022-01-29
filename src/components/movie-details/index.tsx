@@ -1,10 +1,16 @@
 import React from "react";
 
+import { MovieDataType } from "../../types";
+
 import MovieStatusSwitches from "../movie-status-switches/";
 
 import "./style.scss";
 
-const MovieDetails = ({ selectedMovie }) => {
+type PropsType = {
+  selectedMovie: MovieDataType
+};
+
+const MovieDetails: React.FC<PropsType> = ({ selectedMovie }) => {
   const { Poster, statuses, ratings, linkTo, ...dataToShow } = selectedMovie;
 
   const dataKeys = Object.keys(dataToShow);
@@ -13,7 +19,7 @@ const MovieDetails = ({ selectedMovie }) => {
     return (
       <div key={key} className="movie-details__info-item">
         <b>{key}: </b>
-        <span>{selectedMovie[key]};</span>
+        <span>{selectedMovie[key as keyof typeof dataToShow]};</span>
       </div>
     );
   });

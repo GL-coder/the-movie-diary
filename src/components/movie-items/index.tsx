@@ -2,14 +2,21 @@ import React from "react";
 
 import MovieItem from "../movie-item/";
 
+import { MovieDataType } from "../../types";
+
 import "./style.scss";
 
-const MovieItems = ({ moviesData, movieFilter }) => {
+type PropsType = {
+  moviesData: Array<MovieDataType>;
+  movieFilter: string;
+};
+
+const MovieItems: React.FC<PropsType> = ({ moviesData, movieFilter }) => {
   let items =
     movieFilter === "all"
       ? moviesData
       : moviesData.filter(({ statuses }) => {
-          return statuses[movieFilter];
+          return statuses[movieFilter as keyof typeof statuses];
         });
 
   if (movieFilter === "watched") {
@@ -42,7 +49,7 @@ const MovieItems = ({ moviesData, movieFilter }) => {
         <>
           <p>No matching movies found.</p>
           <p>
-            Edit your selected films, activate ' 
+            Edit your selected films, activate '
             <span>
               {movieFilter === "next" ? "next to watch" : movieFilter}
             </span>

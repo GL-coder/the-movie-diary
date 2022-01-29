@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.scss";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer>
       <div className="container">

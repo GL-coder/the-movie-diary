@@ -4,20 +4,24 @@ import { Link } from "react-router-dom";
 
 import MovieMiniStatusesRatings from "../movie-mini-statuses-ratings";
 
-import { onCheckDetails } from "../../actions/";
+import { onCheckDetails } from "../../actions";
+
+import { AppStateType, MovieDataType } from "../../types";
 
 import "./style.scss";
 
-const MovieItem = ({
+type PropsType = {
+  movieData: MovieDataType;
+};
+
+const MovieItem: React.FC<PropsType> = ({
   movieData: { Poster, Title, linkTo, ratings, statuses },
 }) => {
-  const page = useSelector(({ page }) => page);
+  const page = useSelector(({ page }: AppStateType) => page);
 
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
-    dispatch(onCheckDetails(linkTo));
-  };
+  const clickHandler = () => dispatch(onCheckDetails(linkTo));
 
   const items = (
     <>

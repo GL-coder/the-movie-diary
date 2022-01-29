@@ -8,28 +8,34 @@ import MovieAPI from "../../api/movieAPI";
 
 import { onSearchMovie } from "../../actions/";
 
+import { MovieDataType } from "../../types";
+
 import "./style.scss";
 
-const SearchPanel = ({ selectedMovie }) => {
+type PropsType = {
+  selectedMovie: MovieDataType | null
+}
+
+const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const [prevSearchTitle, setPrevSearchTitle] = useState(null);
-  const [prevSearchYear, setPrevSearchYear] = useState(null);
+  const [prevSearchTitle, setPrevSearchTitle] = useState<string | null>(null);
+  const [prevSearchYear, setPrevSearchYear] = useState<string | null>(null);
 
   const dispatch = useDispatch();
 
-  const titleInputRef = useRef(null);
-  const yearInputRef = useRef(null);
-  const searchBtnRef = useRef(null);
+  const titleInputRef = useRef<HTMLInputElement>(null);
+  const yearInputRef = useRef<HTMLInputElement>(null);
+  const searchBtnRef = useRef<HTMLButtonElement>(null);
 
   const searchMessageStatusRef = useRef("Enter movie title...");
 
   useEffect(() => {
-    if (titleInputRef.current.value === "") {
+    if (titleInputRef?.current?.value === "") {
       searchMessageStatusRef.current = "You haven't entered movie title...";
     } else if (
-      yearInputRef.current.value !== "" &&
-      yearInputRef.current.value.length !== 4
+      yearInputRef?.current?.value !== "" &&
+      yearInputRef?.current?.value?.length !== 4
     ) {
       searchMessageStatusRef.current = "You have entered an invalid year...";
     } else if (selectedMovie === null) {
@@ -45,27 +51,25 @@ const SearchPanel = ({ selectedMovie }) => {
   );
 
   const contentItem =
-    titleInputRef?.current?.value &&
-    selectedMovie !== null &&
-    !isLoading ? (
+    titleInputRef?.current?.value && selectedMovie !== null && !isLoading ? (
       <MovieItem movieData={selectedMovie} />
     ) : (
       statusContent
     );
 
-  const inputHandler = (e) => {
-    if (e.key === "Enter") searchBtnRef.current.click();
+  const inputHandler = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") searchBtnRef?.current?.click();
   };
 
   const searchBtnHandler = () => {
     if (!isLoading) {
-      const title = titleInputRef.current.value;
-      const year = yearInputRef.current.value;
+      const title = titleInputRef?.current?.value!;
+      const year = yearInputRef?.current?.value!;
 
       if (title.toLowerCase() !== prevSearchTitle || year !== prevSearchYear) {
         setIsLoading(true);
 
-        setPrevSearchTitle(title.toLowerCase());
+        setPrevSearchTitle(title?.toLowerCase());
         setPrevSearchYear(year);
 
         const movieAPI = new MovieAPI();
@@ -77,7 +81,7 @@ const SearchPanel = ({ selectedMovie }) => {
 
           setTimeout(() => {
             setIsLoading(false);
-          }, 750);
+          }, 600);
         });
       }
     }
@@ -98,7 +102,7 @@ const SearchPanel = ({ selectedMovie }) => {
             <input
               disabled={isLoading}
               type="text"
-              placeholder="year (optional*)"
+              placeholder="year (optional)"
               ref={yearInputRef}
               onKeyUp={inputHandler}
             />

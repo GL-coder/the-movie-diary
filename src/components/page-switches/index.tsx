@@ -4,7 +4,7 @@ import PageSwitchesItem from "../page-switches-item/";
 
 import "./style.scss";
 
-const PageSwitches = () => {
+const PageSwitches: React.FC = () => {
   const itemsData = [
     { text: "main page", keyValue: "" },
     { text: "find a movie", keyValue: "searching" },
