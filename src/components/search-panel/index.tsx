@@ -18,6 +18,7 @@ type PropsType = {
 
 const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const [prevSearchTitle, setPrevSearchTitle] = useState<string | null>(null);
   const [prevSearchYear, setPrevSearchYear] = useState<string | null>(null);
@@ -31,16 +32,18 @@ const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
   const searchMessageStatusRef = useRef("Enter movie title...");
 
   useEffect(() => {
-    if (titleInputRef?.current?.value === "") {
-      searchMessageStatusRef.current = "You haven't entered movie title...";
-    } else if (
-      yearInputRef?.current?.value !== "" &&
-      yearInputRef?.current?.value?.length !== 4
-    ) {
-      searchMessageStatusRef.current = "You have entered an invalid year...";
-    } else if (selectedMovie === null) {
-      searchMessageStatusRef.current =
-        "You have entered the wrong movie title or year or just the movie is not in the API...";
+    if (!hasError) {
+      if (titleInputRef?.current?.value === "") {
+        searchMessageStatusRef.current = "You haven't entered movie title...";
+      } else if (
+        yearInputRef?.current?.value !== "" &&
+        yearInputRef?.current?.value?.length !== 4
+      ) {
+        searchMessageStatusRef.current = "You have entered an invalid year...";
+      } else if (selectedMovie === null) {
+        searchMessageStatusRef.current =
+          "You have entered the wrong movie title or year or just the movie is not in the API...";
+      }
     }
   });
 
@@ -51,7 +54,10 @@ const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
   );
 
   const contentItem =
-    titleInputRef?.current?.value && selectedMovie !== null && !isLoading ? (
+    titleInputRef?.current?.value &&
+    selectedMovie !== null &&
+    !isLoading &&
+    !hasError ? (
       <MovieItem movieData={selectedMovie} />
     ) : (
       statusContent
@@ -68,6 +74,7 @@ const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
 
       if (title.toLowerCase() !== prevSearchTitle || year !== prevSearchYear) {
         setIsLoading(true);
+        setHasError(false);
 
         setPrevSearchTitle(title?.toLowerCase());
         setPrevSearchYear(year);
@@ -82,6 +89,7 @@ const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
             dispatch(onSearchMovie(fullMovieData, title));
           })
           .catch(() => {
+            setHasError(true);
             searchMessageStatusRef.current =
               "Error.. Check your internet connection...";
           })
