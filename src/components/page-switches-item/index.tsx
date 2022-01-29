@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { onSwitch } from "../../actions/";
 
-import { AppStateType } from "../../types";
+import { AppStateType } from "../../types/";
 
 import "./style.scss";
 

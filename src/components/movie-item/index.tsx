@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 import MovieMiniStatusesRatings from "../movie-mini-statuses-ratings";
 
-import { onCheckDetails } from "../../actions";
+import { onCheckDetails } from "../../actions/";
 
-import { AppStateType, MovieDataType } from "../../types";
+import { AppStateType, MovieDataType } from "../../types/";
 
 import "./style.scss";
 

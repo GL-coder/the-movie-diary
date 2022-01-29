@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MovieDataType } from "../../types";
+import { MovieDataType } from "../../types/";
 
 import MovieStatusSwitches from "../movie-status-switches/";
 

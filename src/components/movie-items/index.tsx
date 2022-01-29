@@ -2,7 +2,7 @@ import React from "react";
 
 import MovieItem from "../movie-item/";
 
-import { MovieDataType } from "../../types";
+import { MovieDataType } from "../../types/";
 
 import "./style.scss";
 

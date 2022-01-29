@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { onSwitch } from "../../actions/";
 
-import { AppStateType } from "../../types";
+import { AppStateType } from "../../types/";
 
 import "./style.scss";
 

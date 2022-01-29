@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RatingsType, StatusesType } from "../../types";
+import { RatingsType, StatusesType } from "../../types/";
 
 import "./style.scss";
 

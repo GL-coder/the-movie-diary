@@ -1,9 +1,10 @@
-import { MovieDataType } from "../types";
+import { MovieDataType } from "../types/";
 
-export type ActionsType = OnSwitchActionType
+export type ActionsType = 
+    OnSwitchActionType
   | OnSearchMovieActionType
   | OnCheckDetailsActionType
-  | OnSwitchMovieStatusActionType
+  | OnToggleMovieStatusActionType
   | OnChangeMovieRatingActionType;
 
 export type OnSwitchActionType = {
@@ -50,17 +51,17 @@ const onCheckDetails = (payload: string): OnCheckDetailsActionType => {
   };
 };
 
-export type OnSwitchMovieStatusActionType = {
+export type OnToggleMovieStatusActionType = {
   type: "ON_SWITCH_MOVIE_STATUS";
   payload: {
     keyValue: string;
     status: boolean;
   };
 };
-const onSwitchMovieStatus = (
+const onToggleMovieStatus = (
   keyValue: string,
   status: boolean
-): OnSwitchMovieStatusActionType => {
+): OnToggleMovieStatusActionType => {
   return {
     type: "ON_SWITCH_MOVIE_STATUS",
     payload: { keyValue, status },
@@ -72,17 +73,15 @@ export type OnChangeMovieRatingActionType = {
   payload: {
     keyValue: string;
     newValue: number;
-    onBlurActivated: boolean;
   };
 };
 const onChangeMovieRating = (
   keyValue: string,
-  newValue: number,
-  onBlurActivated: boolean = false
+  newValue: number
 ): OnChangeMovieRatingActionType => {
   return {
     type: "ON_CHANGE_MOVIE_RATING",
-    payload: { keyValue, newValue, onBlurActivated },
+    payload: { keyValue, newValue },
   };
 };
 
@@ -90,6 +89,6 @@ export {
   onSwitch,
   onSearchMovie,
   onCheckDetails,
-  onSwitchMovieStatus,
+  onToggleMovieStatus,
   onChangeMovieRating,
 };

@@ -1,10 +1,13 @@
-import { AppStateType } from "./../types/";
-import { OnSearchMovieActionType } from "./../actions/";
+import { AppStateType } from "../types/";
+import { OnSearchMovieActionType } from "../actions/";
 
-const onSearchMovie = (
-  { moviesData }: AppStateType,
+type ReducerType = (
+  state: AppStateType,
   action: OnSearchMovieActionType
-) => {
+) => AppStateType;
+
+const onSearchMovie: ReducerType = (state, action) => {
+  const { moviesData } = state;
   const { fullMovieData, title } = action.payload;
 
   if (title.length > 0 && fullMovieData.Response === "True") {
@@ -55,12 +58,21 @@ const onSearchMovie = (
         },
       };
 
-      return { selectedMovie: newMovie };
+      return {
+        ...state,
+        selectedMovie: newMovie,
+      };
     } else {
-      return { selectedMovie: checkMovieInData };
+      return {
+        ...state,
+        selectedMovie: checkMovieInData,
+      };
     }
   } else {
-    return { selectedMovie: null };
+    return {
+      ...state,
+      selectedMovie: null,
+    };
   }
 };
 

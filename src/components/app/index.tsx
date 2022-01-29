@@ -9,7 +9,7 @@ import SearchPanel from "../search-panel/";
 import MovieDetails from "../movie-details/";
 import Footer from "../footer/";
 
-import { AppStateType } from "../../types";
+import { AppStateType } from "../../types/";
 
 import "./style.scss";
 

@@ -8,7 +8,7 @@ import MovieAPI from "../../api/movieAPI";
 
 import { onSearchMovie } from "../../actions/";
 
-import { MovieDataType } from "../../types";
+import { MovieDataType } from "../../types/";
 
 import "./style.scss";
 

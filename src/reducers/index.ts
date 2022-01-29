@@ -1,11 +1,11 @@
 import onSwitch from "./on-switch";
 import onSearchMovie from "./on-search-movie";
 import onCheckDetails from "./on-check-details";
-import onSwitchMovieStatus from "./on-switch-movie-status";
+import onToggleMovieStatus from "./on-toggle-movie-status";
 import onChangeMovieRating from "./on-change-movie-rating";
 
-import { ActionsType } from "../actions";
-import { AppStateType, MovieDataType } from "../types";
+import { ActionsType } from "../actions/";
+import { AppStateType, MovieDataType } from "../types/";
 
 type CheckLocalStorageReturnType = string | Array<MovieDataType> | MovieDataType;
 
@@ -28,34 +28,19 @@ const initialState: AppStateType = {
 const reducer = (state = initialState, action: ActionsType) => {
   switch (action.type) {
     case "ON_SWITCH":
-      return {
-        ...state,
-        ...onSwitch(action),
-      };
+      return onSwitch(state, action);
 
     case "ON_SEARCH_MOVIE":
-      return {
-        ...state,
-        ...onSearchMovie(state, action),
-      };
+      return onSearchMovie(state, action);
 
     case "ON_CHECK_DETAILS":
-      return {
-        ...state,
-        ...onCheckDetails(state, action),
-      };
+      return onCheckDetails(state, action);
 
     case "ON_SWITCH_MOVIE_STATUS":
-      return {
-        ...state,
-        ...onSwitchMovieStatus(state, action),
-      };
+      return onToggleMovieStatus(state, action);
 
     case "ON_CHANGE_MOVIE_RATING":
-      return {
-        ...state,
-        ...onChangeMovieRating(state, action),
-      };
+      return onChangeMovieRating(state, action);
 
     default:
       return state;

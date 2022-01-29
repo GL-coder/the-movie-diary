@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { onSwitchMovieStatus, onChangeMovieRating } from "../../actions/";
+import { onToggleMovieStatus, onChangeMovieRating } from "../../actions/";
 
 import "./style.scss";
 
@@ -24,7 +24,7 @@ const MovieStatusSwitchesItem: React.FC<PropsType> = ({
   let btnClassNames = "movie-status-switches__item btn";
   btnClassNames += status ? " active" : "";
 
-  const btnHandler = () => dispatch(onSwitchMovieStatus(keyValue, !status));
+  const btnHandler = () => dispatch(onToggleMovieStatus(keyValue, !status));
 
   const btnItem = (
     <button className={btnClassNames} onClick={btnHandler}>
@@ -45,10 +45,9 @@ const MovieStatusSwitchesItem: React.FC<PropsType> = ({
     dispatch(onChangeMovieRating(keyValue, rating - 1));
   };
   const ratingInputHandler = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    onBlurActivated = false
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(onChangeMovieRating(keyValue, +e.target.value, onBlurActivated));
+    dispatch(onChangeMovieRating(keyValue, +e.target.value));
   };
   const ratingPlusHandler = () => {
     dispatch(onChangeMovieRating(keyValue, rating + 1));
@@ -64,7 +63,7 @@ const MovieStatusSwitchesItem: React.FC<PropsType> = ({
         type="number"
         value={rating}
         onChange={ratingInputHandler}
-        onBlur={(e) => ratingInputHandler(e, true)}
+        onBlur={ratingPlusHandler}
       />
 
       <button disabled={rating >= 999} onClick={ratingPlusHandler}>

@@ -1,9 +1,18 @@
-import { OnSwitchActionType} from "./../actions/";
+import { AppStateType } from "../types/";
+import { OnSwitchActionType } from "../actions/";
 
-const onSwitch = (action: OnSwitchActionType) => {
-  const {keyValue, value} = action.payload;
+type ReducerType = (
+  state: AppStateType,
+  action: OnSwitchActionType
+) => AppStateType;
 
-  return { [keyValue]: value };
+const onSwitch: ReducerType = (state, action) => {
+  const { keyValue, value } = action.payload;
+
+  return {
+    ...state,
+    [keyValue]: value,
+  };
 };
 
 export default onSwitch;

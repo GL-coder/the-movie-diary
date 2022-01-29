@@ -1,4 +1,4 @@
-import { MovieDataType } from "./../types/";
+import { MovieDataType } from "../types/";
 
 const updateMovieData = (
   moviesData: Array<MovieDataType>,

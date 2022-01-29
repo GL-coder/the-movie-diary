@@ -1,10 +1,12 @@
-import { AppStateType } from "./../types/";
-import { OnCheckDetailsActionType } from "./../actions/";
+import { AppStateType } from "../types/";
+import { OnCheckDetailsActionType } from "../actions/";
 
-const onCheckDetails = (
+type ReducerType = (
   state: AppStateType,
   action: OnCheckDetailsActionType
-) => {
+) => AppStateType;
+
+const onCheckDetails: ReducerType = (state, action) => {
   document.body.scrollTop = document.documentElement.scrollTop = 0;
 
   const checkMovieInData = state.moviesData.find(
@@ -13,11 +15,13 @@ const onCheckDetails = (
 
   if (checkMovieInData === undefined) {
     return {
+      ...state,
       moviesData: [state.selectedMovie!, ...state.moviesData],
       page: "details",
     };
   } else {
     return {
+      ...state,
       selectedMovie: checkMovieInData,
       page: "details",
     };
