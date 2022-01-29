@@ -13,8 +13,8 @@ import { MovieDataType } from "../../types/";
 import "./style.scss";
 
 type PropsType = {
-  selectedMovie: MovieDataType | null
-}
+  selectedMovie: MovieDataType | null;
+};
 
 const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -76,13 +76,20 @@ const SearchPanel: React.FC<PropsType> = ({ selectedMovie }) => {
 
         const url = title.replace(/\s/g, "+");
 
-        movieAPI.getResource(url, year).then((fullMovieData) => {
-          dispatch(onSearchMovie(fullMovieData, title));
-
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 600);
-        });
+        movieAPI
+          .getResource(url, year)
+          .then((fullMovieData) => {
+            dispatch(onSearchMovie(fullMovieData, title));
+          })
+          .catch(() => {
+            searchMessageStatusRef.current =
+              "Error.. Check your internet connection...";
+          })
+          .finally(() => {
+            setTimeout(() => {
+              setIsLoading(false);
+            }, 600);
+          });
       }
     }
   };
